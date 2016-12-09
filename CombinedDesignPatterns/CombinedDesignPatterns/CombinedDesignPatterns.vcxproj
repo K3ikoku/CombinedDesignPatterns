@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="BlueTeam.cpp" />
     <ClCompile Include="CubeFactory.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GreenTeam.cpp" />
     <ClCompile Include="MagentaTeam.cpp" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="BlueTeam.h" />
     <ClInclude Include="CubeFactory.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GreenTeam.h" />
     <ClInclude Include="MagentaTeam.h" />

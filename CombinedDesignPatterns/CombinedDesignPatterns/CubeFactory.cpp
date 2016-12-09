@@ -10,3 +10,7 @@ CubeFactory::CubeFactory()
 CubeFactory::~CubeFactory()
 {
 }
+
+void CubeFactory::CreateCube()
+{
+}
