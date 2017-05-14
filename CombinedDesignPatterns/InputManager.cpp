@@ -2,15 +2,16 @@
 
 
 
-InputManager::InputManager(sf::RenderWindow window) :
+InputManager::InputManager(sf::RenderWindow& window) :
     m_drawableHandler(DrawableHandler::GetInstance()),
-    m_lastColor(DrawableHandler::Color::Last - 1),
-    m_lastShape(DrawableHandler::Shapes::Last - 1),
-    m_maxSize(DrawableHandler::Size::Last - 1),
+    m_lastColor(DrawableHandler::Color::LastColor - 1),
+    m_lastShape(DrawableHandler::Shapes::LastShape - 1),
+    m_maxSize(DrawableHandler::Size::LastSize - 1),
     m_color(0),
     m_shape(0),
     m_size(0),
-    m_window(window)
+    m_window(window),
+    m_shapeFactory(new ShapeFactory(window))
 {
 }
 
@@ -42,6 +43,9 @@ void InputManager::HandleInput()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         m_size--;
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+        m_drawableHandler->Clear();
+
     //Reset the variables if they go beyond 0
     if (m_color < 0)
         m_color = m_lastColor;
@@ -52,9 +56,24 @@ void InputManager::HandleInput()
     if (m_size < 0)
         m_size = m_maxSize;
 
-    m_mouseInput = sf::Mouse::getPosition(m_window);
+    m_mouseInput.x = sf::Mouse::getPosition(m_window).x;
+    m_mouseInput.y = sf::Mouse::getPosition(m_window).y;
 
-    //if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-        
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        m_shapeFactory->CreateNewShape(m_color, m_shape, m_size, m_mouseInput); 
+}
 
+int& InputManager::GetShape()
+{
+    return m_shape;
+}
+
+int& InputManager::GetColor()
+{
+    return m_color;
+}
+
+int& InputManager::GetSize()
+{
+    return m_size;
 }

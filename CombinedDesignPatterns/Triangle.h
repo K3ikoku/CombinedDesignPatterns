@@ -4,9 +4,16 @@ class Triangle :
     public ShapeBase
 {
 public:
-    Triangle(sf::RenderWindow& window, sf::Color& color, float xPos, float yPos, int width, int height);
+    Triangle(int& color, int& size);
     ~Triangle();
 
-    void Draw() override;
+    void SetPosition(sf::Vector2f position);
+    void SetColor(int& color);
+    void Draw(sf::RenderWindow& window) override;
+    void Scale(float newScale);
+
+private:
+    sf::CircleShape m_shape;
+    float m_size;
 };
 

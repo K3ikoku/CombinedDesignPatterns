@@ -4,8 +4,7 @@
 
 ShapeFactory::ShapeFactory(sf::RenderWindow& window) :
     m_window(window),
-    m_drawableHandler(DrawableHandler::GetInstance()),
-    m_newColor(nullptr)
+    m_drawableHandler(DrawableHandler::GetInstance())
 {
 }
 
@@ -14,52 +13,16 @@ ShapeFactory::~ShapeFactory()
 {
 }
 
-void ShapeFactory::CreateShape(int color, int shape, int size, sf::Vector2i position)
+void ShapeFactory::CreateNewShape(int& color, int& shape, int& size, sf::Vector2f position)
 {
-    m_position = position;
-    GetSize(size, shape);
-    m_newColor = GetColor(color);
-    m_newShape = GetShape(shape);
+    m_newShape = GetShape(shape, size, color, position);
     
-    m_drawableHandler->Add(m_newShape);
+    m_drawableHandler->AddShape(m_newShape);
 }
 
-ShapeBase * ShapeFactory::GetShape(int& shape)
+ShapeBase * ShapeFactory::GetShape(int& shape, int& size, int& color, sf::Vector2f position)
 {
-    ShapeBase* m_tempUnit;
-    switch (shape)
-    {
-    case DrawableHandler::Shapes::Circle:
-        return m_tempUnit = new Circle(m_window, *m_newColor, m_position.x, m_position.y, m_width, m_height);
-        break;
-
-    case DrawableHandler::Shapes::Rectangle:
-        return m_tempUnit = new Rectangle(m_window, *m_newColor, m_position.x, m_position.y, m_width, m_height);
-        break;
-
-    case DrawableHandler::Shapes::Square:
-        return m_tempUnit = new Square(m_window, *m_newColor, m_position.x, m_position.y, m_width, m_height);
-        break;
-
-    case DrawableHandler::Shapes::Triangle:
-        return m_tempUnit = new Triangle(m_window, *m_newColor, m_position.x, m_position.y, m_width, m_height);
-        break;
-
-    case DrawableHandler::Shapes::Octogon:
-        return m_tempUnit = new Octagon(m_window, *m_newColor, m_position.x, m_position.y, m_width, m_height);
-        break;
-
-    default:
-        break;
-    }
+    ShapeBase* m_tempUnit = m_drawableHandler->TryGetShapeReference(shape, size, color);
+    m_tempUnit->SetPosition(position);
     return m_newShape;
-}
-
-sf::Color * ShapeFactory::GetColor(int& color)
-{
-    return m_newColor;
-}
-
-void ShapeFactory::GetSize(int& size, int& shape)
-{
 }

@@ -4,9 +4,16 @@ class Octagon :
     public ShapeBase
 {
 public:
-    Octagon(sf::RenderWindow& window, sf::Color& color, float xPos, float yPos, int width, int height);
+    Octagon(int& color, int& size);
     ~Octagon();
 
-    void Draw() override;
+    void SetPosition(sf::Vector2f position);
+    void SetColor(int& color);
+    void Draw(sf::RenderWindow& window) override;
+    void Scale(float newScale) override;
+
+private:
+    sf::CircleShape m_shape;
+    float m_size;
 };
 

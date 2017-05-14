@@ -4,9 +4,16 @@ class Rectangle :
     public ShapeBase
 {
 public:
-    Rectangle(sf::RenderWindow& window, sf::Color& color, float xPos, float yPos, int width, int height);
+    Rectangle(int& color, int& size);
     ~Rectangle();
 
-    void Draw() override;
+    void SetPosition(sf::Vector2f position) override;
+    void SetColor(int& color);
+    void Draw(sf::RenderWindow& window) override;
+    void Scale(float newScale) override;
+
+private:
+    sf::RectangleShape m_shape;
+    sf::Vector2f m_size;
 };
 

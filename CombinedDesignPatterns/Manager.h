@@ -14,6 +14,9 @@ public:
 private:
     sf::RenderWindow m_window;
     DrawableHandler* m_drawableHandler;
+    InputManager* m_inputManager;
+    ShapeBase* m_guiShape;
+    float m_guiShapeScale = 0.5f;
 
     void Gui();
     void Update();

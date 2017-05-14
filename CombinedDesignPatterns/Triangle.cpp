@@ -1,9 +1,38 @@
 #include "Triangle.h"
+#include "DrawableHandler.h"
 
 
 
-Triangle::Triangle(sf::RenderWindow& window, sf::Color& color, float xPos, float yPos, int width, int height)
+Triangle::Triangle(int& color, int& size)
 {
+    m_shape.setPointCount(3);
+    switch (size)
+    {
+    case DrawableHandler::Size::xSmall:
+        m_size = 25;
+        break;
+    case DrawableHandler::Size::Small:
+        m_size = 50;
+        break;
+    case DrawableHandler::Size::Medium:
+        m_size = 75;
+        break;
+    case DrawableHandler::Size::Large:
+        m_size = 100;
+        break;
+    case DrawableHandler::Size::xLarge:
+        m_size = 125;
+        break;
+    case DrawableHandler::Size::xxLarge:
+        m_size = 150;
+        break;
+    default:
+        break;
+    }
+
+    m_shape.setRadius(m_size);
+
+    SetColor(color);
 }
 
 
@@ -11,6 +40,23 @@ Triangle::~Triangle()
 {
 }
 
-void Triangle::Draw()
+void Triangle::SetPosition(sf::Vector2f position)
 {
+    m_position = position;
+}
+
+void Triangle::SetColor(int & color)
+{
+    ShapeBase::SetColor(color);
+    m_shape.setFillColor(m_color);
+}
+
+void Triangle::Draw(sf::RenderWindow& window)
+{
+    window.draw(m_shape);
+}
+
+void Triangle::Scale(float newScale)
+{
+    m_shape.scale(newScale, newScale);
 }
