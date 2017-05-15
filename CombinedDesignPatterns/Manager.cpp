@@ -3,7 +3,7 @@
 
 
 Manager::Manager() :
-    m_window(sf::VideoMode(640, 960), "Shape Drawer"),
+    m_window(sf::VideoMode(640, 640), "Shape Drawer"),
     m_drawableHandler(DrawableHandler::GetInstance()),
     m_inputManager(new InputManager(m_window))
 {
@@ -18,6 +18,13 @@ void Manager::ProgramLoop()
 {
     m_window.setFramerateLimit(60);
 
+    sf::CircleShape m_testCircle(24);
+    m_testCircle.setPosition(m_window.getSize().x, m_window.getSize().y);
+    m_testCircle.setFillColor(sf::Color::Blue);
+
+    sf::RectangleShape m_testRect(sf::Vector2f(50, 100));
+    m_testRect.setPosition(m_window.getSize().x * 0.5f, m_window.getSize().y * 0.5f);
+    m_testRect.setFillColor(sf::Color::Green);
 
     while (m_window.isOpen())
     {
@@ -30,6 +37,8 @@ void Manager::ProgramLoop()
                 m_window.close();
             }
         }
+        m_window.draw(m_testCircle);
+        m_window.draw(m_testRect);
         Gui();
         Update();
         Draw();

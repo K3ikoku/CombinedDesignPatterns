@@ -5,6 +5,7 @@
 #include "Square.h"
 #include "Triangle.h"
 #include "Octagon.h"
+#include <iostream>
 
 class DrawableHandler
 {

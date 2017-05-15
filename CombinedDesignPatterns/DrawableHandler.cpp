@@ -1,6 +1,7 @@
 #include "DrawableHandler.h"
 
 DrawableHandler* DrawableHandler::m_instance = nullptr;
+sf::RenderWindow* DrawableHandler::m_window = nullptr;
 
 const char*  DrawableHandler::ColorString[] =
 {
@@ -45,10 +46,10 @@ ShapeBase * DrawableHandler::CreateNewSHape(int& shape, int& size, int& color, c
     default:
         return nullptr;
         break;
-
-        m_shapes[name] = m_newShape;
-        return m_newShape;
     }
+
+    m_shapes[name] = m_newShape;
+    return m_newShape;
 }
 
 DrawableHandler * DrawableHandler::GetInstance(sf::RenderWindow& window)
@@ -100,14 +101,14 @@ void DrawableHandler::Remove(const int index)
 
 ShapeBase* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& color)
 {
-    const char m_name = *GetSizeText(size) + *GetColorText(color) + *GetShapeText(shape);
+    const char* m_name = GetSizeText(size) + *GetColorText(color) + *GetShapeText(shape);
     ShapeBase* m_newShape;
 
-    if (m_shapes.find(m_name) == m_shapes.end)
-        m_newShape = CreateNewSHape(shape, size, color, m_name);
+    if (m_shapes.find(*m_name) == m_shapes.end())
+        m_newShape = CreateNewSHape(shape, size, color, *m_name);
 
     else
-        m_newShape = m_shapes.at(m_name);
+        m_newShape = m_shapes.at(*m_name);
 
     return m_newShape;
 }
@@ -129,15 +130,18 @@ void DrawableHandler::Clear()
 
 const char * DrawableHandler::GetColorText(int value)
 {
+    //std::cout << ColorString[value];
     return ColorString[value];
 }
 
 const char * DrawableHandler::GetShapeText(int value)
 {
+    //std::cout << ShapesString[value];
     return ShapesString[value];
 }
 
 const char * DrawableHandler::GetSizeText(int value)
 {
+    //std::cout << SizeString[value];
     return SizeString[value];
 }
