@@ -2,9 +2,10 @@
 #include "DrawableHandler.h"
 
 
-
 Circle::Circle(int& color, int& size)
 {
+    m_shape = sf::CircleShape(75);
+
     switch (size)
     {
     case DrawableHandler::Size::xSmall:

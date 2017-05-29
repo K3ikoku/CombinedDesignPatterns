@@ -68,9 +68,6 @@
     <ClInclude Include="Circle.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="Octagon.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
@@ -85,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 
 Rectangle::Rectangle(int& color, int& size)
 {
+    m_shape = sf::RectangleShape(sf::Vector2f(75, 37.5f));
     switch (size)
     {
     case DrawableHandler::Size::xSmall:

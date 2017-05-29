@@ -5,6 +5,7 @@
 
 Square::Square(int& color, int& size)
 {
+    m_shape = sf::CircleShape(75);
     m_shape.setPointCount(4);
     switch (size)
     {

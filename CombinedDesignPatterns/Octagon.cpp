@@ -5,6 +5,7 @@
 
 Octagon::Octagon(int& color, int& size)
 {
+    m_shape = sf::CircleShape(75);
     m_shape.setPointCount(8);
     switch (size)
     {

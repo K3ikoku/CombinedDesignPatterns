@@ -5,6 +5,7 @@
 
 Triangle::Triangle(int& color, int& size)
 {
+    m_shape = sf::CircleShape(75);
     m_shape.setPointCount(3);
     switch (size)
     {
