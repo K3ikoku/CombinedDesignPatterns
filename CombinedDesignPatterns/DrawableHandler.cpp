@@ -113,9 +113,9 @@ ShapeBase* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& col
     return m_newShape;
 }
 
-ShapeBase & DrawableHandler::GetShape(const int& index)
+ShapeBase * DrawableHandler::GetShape(const int& index)
 {
-    return *m_activeShapes[index];
+    return m_activeShapes[index];
 }
 
 int DrawableHandler::GetShapesSize()

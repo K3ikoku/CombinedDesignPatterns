@@ -28,6 +28,8 @@ void InputManager::HandleInput()
         m_color++;
         if (m_color % (m_lastColor + 1) == 0)
             m_color = 0;
+
+        m_getNewGuiShape = true;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -36,6 +38,8 @@ void InputManager::HandleInput()
 
         if (m_color < 0)
             m_color = m_lastColor;
+
+        m_getNewGuiShape = true;
     }
 
     //Check if the player is pressing D or A to increment and decrement the shape enum
@@ -44,6 +48,8 @@ void InputManager::HandleInput()
         m_shape++;
         if (m_shape % (m_lastShape + 1) == 0)
             m_shape = 0;
+
+        m_getNewGuiShape = true;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -52,6 +58,8 @@ void InputManager::HandleInput()
 
         if (m_shape < 0)
             m_shape = m_lastShape;
+
+        m_getNewGuiShape = true;
     }
 
     //Check if the player is pressing E or Q to increment and decrement the size enum
@@ -60,6 +68,8 @@ void InputManager::HandleInput()
         m_size++;
         if (m_size % (m_maxSize + 1) == 0)
             m_size = 0;
+
+        m_getNewGuiShape = true;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -68,6 +78,8 @@ void InputManager::HandleInput()
 
         if (m_size < 0)
             m_size = m_maxSize;
+
+        m_getNewGuiShape = true;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
@@ -96,4 +108,15 @@ int& InputManager::GetColor()
 int& InputManager::GetSize()
 {
     return m_size;
+}
+
+bool InputManager::GetNewGuiShape()
+{
+    if (m_getNewGuiShape == true) 
+    {
+        m_getNewGuiShape = false;
+        return true;
+    }
+
+    return false;
 }

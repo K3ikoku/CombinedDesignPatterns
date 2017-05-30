@@ -7,8 +7,8 @@ public:
     Octagon(int& color, int& size);
     ~Octagon();
 
-    void SetPosition(sf::Vector2f position);
-    void SetColor(int& color);
+    void SetPosition(sf::Vector2f position) override;
+    void SetColor(int& color) override;
     void Draw(sf::RenderWindow& window) override;
     void Scale(float newScale) override;
 

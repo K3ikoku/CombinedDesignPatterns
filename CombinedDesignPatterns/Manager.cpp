@@ -18,13 +18,13 @@ void Manager::ProgramLoop()
 {
     m_window.setFramerateLimit(60);
 
-    sf::CircleShape m_testCircle(24);
-    m_testCircle.setPosition(m_window.getSize().x, m_window.getSize().y);
-    m_testCircle.setFillColor(sf::Color::Blue);
+    //sf::CircleShape m_testCircle(24);
+    //m_testCircle.setPosition(m_window.getSize().x / 2, m_window.getSize().y / 2);
+    //m_testCircle.setFillColor(sf::Color::Blue);
 
-    sf::RectangleShape m_testRect(sf::Vector2f(50, 100));
-    m_testRect.setPosition(m_window.getSize().x * 0.5f, m_window.getSize().y * 0.5f);
-    m_testRect.setFillColor(sf::Color::Green);
+    //sf::RectangleShape m_testRect(sf::Vector2f(50, 100));
+    //m_testRect.setPosition(m_window.getSize().x * 0.5f, m_window.getSize().y * 0.5f);
+    //m_testRect.setFillColor(sf::Color::Green);
 
     while (m_window.isOpen())
     {
@@ -37,18 +37,20 @@ void Manager::ProgramLoop()
                 m_window.close();
             }
         }
-        m_window.draw(m_testCircle);
-        m_window.draw(m_testRect);
         Gui();
         Update();
         Draw();
+        m_window.display();
     }
 }
 
 void Manager::Gui()
 {
-    m_guiShape = m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetColor(), m_inputManager->GetSize());
-    m_guiShape->Scale(m_guiShapeScale);
+    if (m_inputManager->GetNewGuiShape() == true)
+    {
+        m_guiShape = m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetColor(), m_inputManager->GetSize());
+        m_guiShape->Scale(m_guiShapeScale);
+    }
     m_guiShape->Draw(m_window);
 }
 
@@ -64,8 +66,8 @@ void Manager::Draw()
         m_window.clear(sf::Color::White);
         for (unsigned int i = 0; i < m_drawableHandler->GetShapesSize(); i++)
         {
-            ShapeBase& m_shapeToDraw = m_drawableHandler->GetShape(i);
-            m_shapeToDraw.Draw(m_window);
+            ShapeBase* m_shapeToDraw = m_drawableHandler->GetShape(i);
+            m_shapeToDraw->Draw(m_window);
         }
     }
 }

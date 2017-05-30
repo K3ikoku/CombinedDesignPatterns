@@ -11,6 +11,7 @@ public:
     int& GetShape();
     int& GetColor();
     int& GetSize();
+    bool GetNewGuiShape();
 
 private:
     DrawableHandler* m_drawableHandler;
@@ -22,6 +23,7 @@ private:
     int m_lastColor;
     int m_size;
     int m_maxSize;
+    bool m_getNewGuiShape = true;
 
     sf::Vector2f m_mouseInput;
 };

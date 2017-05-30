@@ -55,7 +55,7 @@ public:
 
     ShapeBase* TryGetShapeReference(int& shape, int& size, int& color);
 
-    ShapeBase& GetShape(const int& index);
+    ShapeBase* GetShape(const int& index);
 
     int GetShapesSize();
 
