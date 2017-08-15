@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Shapes">
-      <UniqueIdentifier>{33901c04-3a6e-48a8-afb2-2edfb87abf09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shapes">
-      <UniqueIdentifier>{dd6ed953-2d61-47e5-a91d-befbfad5a351}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -36,23 +30,8 @@
     <ClCompile Include="ShapeFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="Octagon.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeBase.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="Square.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,25 +44,10 @@
     <ClInclude Include="ShapeFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Octagon.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Header Files\Shapes</Filter>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShapeBase.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Square.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

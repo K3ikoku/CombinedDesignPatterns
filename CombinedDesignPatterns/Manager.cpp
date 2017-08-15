@@ -17,15 +17,6 @@ Manager::~Manager()
 void Manager::ProgramLoop()
 {
     m_window.setFramerateLimit(60);
-
-    //sf::CircleShape m_testCircle(24);
-    //m_testCircle.setPosition(m_window.getSize().x / 2, m_window.getSize().y / 2);
-    //m_testCircle.setFillColor(sf::Color::Blue);
-
-    //sf::RectangleShape m_testRect(sf::Vector2f(50, 100));
-    //m_testRect.setPosition(m_window.getSize().x * 0.5f, m_window.getSize().y * 0.5f);
-    //m_testRect.setFillColor(sf::Color::Green);
-
     while (m_window.isOpen())
     {
         //Create an event for closing the window
@@ -48,8 +39,8 @@ void Manager::Gui()
 {
     if (m_inputManager->GetNewGuiShape() == true)
     {
-        m_guiShape = m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetSize(), m_inputManager->GetColor());
-        m_guiShape->Scale(m_guiShapeScale);
+        m_guiShape = new ShapeBase(*m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetSize(), m_inputManager->GetColor()));
+        m_guiShape->SetNewScale(m_guiShapeScale);
     }
     m_guiShape->Draw(m_window);
 }

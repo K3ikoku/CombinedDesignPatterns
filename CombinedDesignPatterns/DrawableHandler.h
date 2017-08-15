@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
-#include "Circle.h"
-#include "Rectangle.h"
-#include "Square.h"
-#include "Triangle.h"
-#include "Octagon.h"
+#include "ShapeBase.h"
 #include <iostream>
 
 class DrawableHandler
@@ -49,29 +45,32 @@ public:
     static DrawableHandler* GetInstance();
     ~DrawableHandler();
 
-    void AddShape(ShapeBase* shape);
-    void Remove(ShapeBase* shape);
+    void AddShapeBase(ShapeBase* shape);
+    void RemoveShapeBase(ShapeBase* shape);
     void Remove(const int index);
 
-    ShapeBase* TryGetShapeReference(int& shape, int& size, int& color);
+    sf::Shape* TryGetShapeReference(int& shape, int& size, int& color);
 
     ShapeBase* GetShape(const int& index);
 
     int GetShapesSize();
 
     void Clear();
-    
+
     const char* GetColorText(int value);
     const char* GetShapeText(int value);
     const char* GetSizeText(int value);
 
 private:
     DrawableHandler();
-    ShapeBase * CreateNewSHape(int& shape, int& size, int& color, std::string name);
+    sf::Shape * CreateNewShape(int& shape, int& size, int& color, std::string name);
+    sf::Shape * GetNewShape(int& shape, float& size);
+    float GetNewSize(int& size);
+    sf::Color GetNewColor(int& color);
     static DrawableHandler* m_instance;
     static sf::RenderWindow* m_window;
-    std::vector<ShapeBase*> m_activeShapes;
-    std::map<std::string, ShapeBase*> m_shapes;
+    std::vector<ShapeBase*> m_activeShapeBases;
+    std::map < std::string, sf::Shape *> m_shapes;
 
     static const char* ColorString[];
     static const char* ShapesString[];

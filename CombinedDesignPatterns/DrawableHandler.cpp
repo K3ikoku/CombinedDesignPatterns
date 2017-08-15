@@ -24,34 +24,103 @@ DrawableHandler::DrawableHandler()
 {
 }
 
-ShapeBase * DrawableHandler::CreateNewSHape(int& shape, int& size, int& color, std::string name)
+sf::Shape * DrawableHandler::CreateNewShape(int& shape, int& size, int& color, std::string name)
 {
-    ShapeBase* m_newShape;
-    switch (shape)
-    {
-    case CircleShape:
-        m_newShape = new Circle(color, size);
-        break;
-
-    case RectangleShape:
-        m_newShape = new Rectangle(color, size);
-        break;
-    case SquareShape:
-        m_newShape = new Square(color, size);
-        break;
-    case TriangleShape:
-        m_newShape = new Triangle(color, size);
-        break;
-    case OctogonShape:
-        m_newShape = new Octagon(color, size);
-        break;
-    default:
-        return nullptr;
-        break;
-    }
+    float m_size = GetNewSize(size);
+    sf::Shape* m_newShape = GetNewShape(shape, m_size);
+    m_newShape->setFillColor(GetNewColor(color));
 
     m_shapes[name] = m_newShape;
     return m_newShape;
+}
+
+sf::Shape * DrawableHandler::GetNewShape(int & shape, float & size)
+{
+    sf::Shape * m_newShape;
+    switch (shape)
+    {
+    case CircleShape:
+        m_newShape = new sf::CircleShape(size);
+        break;
+
+    case RectangleShape:
+        m_newShape = new sf::RectangleShape(sf::Vector2f(size, (size / 2)));
+        break;
+    case SquareShape:
+        m_newShape = new sf::CircleShape(size, 4);
+        break;
+    case TriangleShape:
+        m_newShape = new sf::CircleShape(size, 3);
+        break;
+    case OctogonShape:
+        m_newShape = new sf::CircleShape(size, 8);
+        break;
+    default:
+        m_newShape = new sf::CircleShape(size);
+        break;
+    }
+    return m_newShape;
+}
+
+float DrawableHandler::GetNewSize(int & size)
+{
+    float m_size = 75;
+    switch (size)
+    {
+    case DrawableHandler::Size::xSmall:
+        m_size = 25;
+        break;
+    case DrawableHandler::Size::Small:
+        m_size = 50;
+        break;
+    case DrawableHandler::Size::Medium:
+        m_size = 75;
+        break;
+    case DrawableHandler::Size::Large:
+        m_size = 100;
+        break;
+    case DrawableHandler::Size::xLarge:
+        m_size = 125;
+        break;
+    case DrawableHandler::Size::xxLarge:
+        m_size = 150;
+        break;
+    default:
+        break;
+    }
+    return m_size;
+}
+
+sf::Color DrawableHandler::GetNewColor(int & color)
+{
+    sf::Color m_color = sf::Color::Red;
+    switch (color)
+    {
+    case DrawableHandler::Color::Red:
+        m_color = sf::Color::Red;
+        break;
+    case DrawableHandler::Color::Blue:
+        m_color = sf::Color::Blue;
+        break;
+    case DrawableHandler::Color::Green:
+        m_color = sf::Color::Green;
+        break;
+    case DrawableHandler::Color::Yellow:
+        m_color = sf::Color::Yellow;
+        break;
+    case DrawableHandler::Color::White:
+        m_color = sf::Color::White;
+        break;
+    case DrawableHandler::Color::Magenta:
+        m_color = sf::Color::Magenta;
+        break;
+    case DrawableHandler::Color::Black:
+        m_color = sf::Color::Black;
+        break;
+    default:
+        break;
+    }
+    return m_color;
 }
 
 DrawableHandler * DrawableHandler::GetInstance(sf::RenderWindow& window)
@@ -77,19 +146,19 @@ DrawableHandler::~DrawableHandler()
 {
 }
 
-void DrawableHandler::AddShape(ShapeBase * shape)
+void DrawableHandler::AddShapeBase(ShapeBase *shape)
 {
-    m_activeShapes.push_back(shape);
+    m_activeShapeBases.push_back(shape);
 }
 
-void DrawableHandler::Remove(ShapeBase * shape)
+void DrawableHandler::RemoveShapeBase(ShapeBase * shape)
 {
-    for (unsigned int i = 0; i < m_activeShapes.size(); i++)
+    for (unsigned int i = 0; i < m_activeShapeBases.size(); i++)
     {
-        if (m_activeShapes[i] == shape)
+        if (m_activeShapeBases[i] == shape)
         {
-            delete m_activeShapes[i];
-            m_activeShapes.erase(m_activeShapes.begin() + i);
+            delete m_activeShapeBases[i];
+            m_activeShapeBases.erase(m_activeShapeBases.begin() + i);
             break;
         }
     }
@@ -97,21 +166,20 @@ void DrawableHandler::Remove(ShapeBase * shape)
 
 void DrawableHandler::Remove(const int index)
 {
-    delete m_activeShapes[index];
-    m_activeShapes.erase(m_activeShapes.begin() + index);
+    delete m_activeShapeBases[index];
+    m_activeShapeBases.erase(m_activeShapeBases.begin() + index);
 }
 
-ShapeBase* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& color)
+sf::Shape* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& color)
 {
-	std::string sizeText = GetSizeText(size);
-	std::string colorText = GetColorText(color);
-	std::string shapeText = GetShapeText(shape);
+    std::string sizeText = GetSizeText(size);
+    std::string colorText = GetColorText(color);
+    std::string shapeText = GetShapeText(shape);
 
     std::string m_name = sizeText + colorText + shapeText;
-    ShapeBase* m_newShape;
-
+    sf::Shape* m_newShape;
     if (m_shapes.find(m_name) == m_shapes.end())
-        m_newShape = CreateNewSHape(shape, size, color, m_name);
+        m_newShape = CreateNewShape(shape, size, color, m_name);
 
     else
         m_newShape = m_shapes.at(m_name);
@@ -121,17 +189,17 @@ ShapeBase* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& col
 
 ShapeBase * DrawableHandler::GetShape(const int& index)
 {
-    return m_activeShapes[index];
+    return m_activeShapeBases[index];
 }
 
 int DrawableHandler::GetShapesSize()
 {
-    return m_activeShapes.size();
+    return m_activeShapeBases.size();
 }
 
 void DrawableHandler::Clear()
 {
-    m_activeShapes.clear();
+    m_activeShapeBases.clear();
 }
 
 const char * DrawableHandler::GetColorText(int value)

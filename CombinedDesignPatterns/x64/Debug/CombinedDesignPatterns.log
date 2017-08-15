@@ -1,1 +1,10 @@
-﻿sfml-graphics.lib(sfml-graphics-2.dll) : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'
+﻿  ShapeBase.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  ShapeFactory.cpp
+  Manager.cpp
+  Main.cpp
+  InputManager.cpp
+  DrawableHandler.cpp
+  CombinedDesignPatterns.vcxproj -> F:\Game Dev\Visual Studio\Combined Design Patterns\x64\Debug\CombinedDesignPatterns.exe
+  CombinedDesignPatterns.vcxproj -> F:\Game Dev\Visual Studio\Combined Design Patterns\x64\Debug\CombinedDesignPatterns.pdb (Partial PDB)

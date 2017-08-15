@@ -1,10 +1,5 @@
 #pragma once
 #include "DrawableHandler.h"
-#include "Circle.h"
-#include "Rectangle.h"
-#include "Square.h"
-#include "Triangle.h"
-#include "Octagon.h"
 
 class ShapeFactory
     {

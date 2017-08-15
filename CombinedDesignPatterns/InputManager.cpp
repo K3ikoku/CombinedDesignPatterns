@@ -86,8 +86,6 @@ void InputManager::HandleInput()
         m_drawableHandler->Clear();
 
     //Reset the variables if they go beyond 0
-
-
     m_mouseInput.x = sf::Mouse::getPosition(m_window).x;
     m_mouseInput.y = sf::Mouse::getPosition(m_window).y;
 

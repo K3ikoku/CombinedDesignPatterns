@@ -16,13 +16,13 @@ ShapeFactory::~ShapeFactory()
 void ShapeFactory::CreateNewShape(int& color, int& shape, int& size, sf::Vector2f position)
 {
     m_newShape = GetShape(shape, size, color, position);
-    
-    m_drawableHandler->AddShape(m_newShape);
+
+    m_drawableHandler->AddShapeBase(m_newShape);
 }
 
 ShapeBase * ShapeFactory::GetShape(int& shape, int& size, int& color, sf::Vector2f position)
 {
-    ShapeBase* m_tempUnit = m_drawableHandler->TryGetShapeReference(shape, size, color);
+    ShapeBase* m_tempUnit = new ShapeBase(*m_drawableHandler->TryGetShapeReference(shape, size, color));
     m_tempUnit->SetPosition(position);
     return m_tempUnit;
 }
