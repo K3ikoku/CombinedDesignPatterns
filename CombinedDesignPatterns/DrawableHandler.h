@@ -67,11 +67,11 @@ public:
 
 private:
     DrawableHandler();
-    ShapeBase * CreateNewSHape(int& shape, int& size, int& color, const char& name);
+    ShapeBase * CreateNewSHape(int& shape, int& size, int& color, std::string name);
     static DrawableHandler* m_instance;
     static sf::RenderWindow* m_window;
     std::vector<ShapeBase*> m_activeShapes;
-    std::map<const char, ShapeBase*> m_shapes;
+    std::map<std::string, ShapeBase*> m_shapes;
 
     static const char* ColorString[];
     static const char* ShapesString[];

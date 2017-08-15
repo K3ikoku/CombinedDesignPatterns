@@ -1,5 +1,7 @@
 #include "DrawableHandler.h"
 
+#include <string>
+
 DrawableHandler* DrawableHandler::m_instance = nullptr;
 sf::RenderWindow* DrawableHandler::m_window = nullptr;
 
@@ -22,7 +24,7 @@ DrawableHandler::DrawableHandler()
 {
 }
 
-ShapeBase * DrawableHandler::CreateNewSHape(int& shape, int& size, int& color, const char& name)
+ShapeBase * DrawableHandler::CreateNewSHape(int& shape, int& size, int& color, std::string name)
 {
     ShapeBase* m_newShape;
     switch (shape)
@@ -101,14 +103,18 @@ void DrawableHandler::Remove(const int index)
 
 ShapeBase* DrawableHandler::TryGetShapeReference(int& shape, int& size, int& color)
 {
-    const char* m_name = GetSizeText(size) + *GetColorText(color) + *GetShapeText(shape);
+	std::string sizeText = GetSizeText(size);
+	std::string colorText = GetColorText(color);
+	std::string shapeText = GetShapeText(shape);
+
+    std::string m_name = sizeText + colorText + shapeText;
     ShapeBase* m_newShape;
 
-    if (m_shapes.find(*m_name) == m_shapes.end())
-        m_newShape = CreateNewSHape(shape, size, color, *m_name);
+    if (m_shapes.find(m_name) == m_shapes.end())
+        m_newShape = CreateNewSHape(shape, size, color, m_name);
 
     else
-        m_newShape = m_shapes.at(*m_name);
+        m_newShape = m_shapes.at(m_name);
 
     return m_newShape;
 }

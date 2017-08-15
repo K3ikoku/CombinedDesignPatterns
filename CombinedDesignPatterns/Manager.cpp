@@ -48,7 +48,7 @@ void Manager::Gui()
 {
     if (m_inputManager->GetNewGuiShape() == true)
     {
-        m_guiShape = m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetColor(), m_inputManager->GetSize());
+        m_guiShape = m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetSize(), m_inputManager->GetColor());
         m_guiShape->Scale(m_guiShapeScale);
     }
     m_guiShape->Draw(m_window);

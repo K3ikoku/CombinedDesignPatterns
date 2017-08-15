@@ -24,5 +24,5 @@ ShapeBase * ShapeFactory::GetShape(int& shape, int& size, int& color, sf::Vector
 {
     ShapeBase* m_tempUnit = m_drawableHandler->TryGetShapeReference(shape, size, color);
     m_tempUnit->SetPosition(position);
-    return m_newShape;
+    return m_tempUnit;
 }

@@ -1,0 +1,17 @@
+﻿  Triangle.cpp
+  Square.cpp
+  ShapeFactory.cpp
+  ShapeBase.cpp
+  Rectangle.cpp
+  Octagon.cpp
+  Manager.cpp
+f:\game dev\visual studio\combined design patterns\combineddesignpatterns\manager.cpp(67): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+  InputManager.cpp
+f:\game dev\visual studio\combined design patterns\combineddesignpatterns\inputmanager.cpp(91): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+f:\game dev\visual studio\combined design patterns\combineddesignpatterns\inputmanager.cpp(92): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  DrawableHandler.cpp
+  Circle.cpp
+  Generating Code...
+  CombinedDesignPatterns.vcxproj -> F:\Game Dev\Visual Studio\Combined Design Patterns\Debug\CombinedDesignPatterns.exe
+  CombinedDesignPatterns.vcxproj -> F:\Game Dev\Visual Studio\Combined Design Patterns\Debug\CombinedDesignPatterns.pdb (Partial PDB)
