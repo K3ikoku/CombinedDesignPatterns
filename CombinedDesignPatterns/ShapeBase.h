@@ -15,8 +15,10 @@ public:
 private:
     int m_width;
     int m_height;
+    float m_scale;
     sf::Vector2f m_position;
     sf::Color m_color;
-    sf::Shape m_shape;
+    sf::Shape* m_shape;
+    //DrawableHandler* m_drawableHandler;
 };
 

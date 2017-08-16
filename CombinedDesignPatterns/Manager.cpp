@@ -28,6 +28,7 @@ void Manager::ProgramLoop()
                 m_window.close();
             }
         }
+        m_window.clear(sf::Color::Black);
         Gui();
         Update();
         Draw();
@@ -41,6 +42,7 @@ void Manager::Gui()
     {
         m_guiShape = new ShapeBase(*m_drawableHandler->TryGetShapeReference(m_inputManager->GetShape(), m_inputManager->GetSize(), m_inputManager->GetColor()));
         m_guiShape->SetNewScale(m_guiShapeScale);
+        m_guiShape->SetPosition(sf::Vector2f(0, 0));
     }
     m_guiShape->Draw(m_window);
 }
@@ -54,7 +56,6 @@ void Manager::Draw()
 {
     if (m_drawableHandler->GetShapesSize() > 0)
     {
-        m_window.clear(sf::Color::White);
         for (unsigned int i = 0; i < m_drawableHandler->GetShapesSize(); i++)
         {
             ShapeBase* m_shapeToDraw = m_drawableHandler->GetShape(i);
